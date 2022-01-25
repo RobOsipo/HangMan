@@ -1,5 +1,5 @@
 'use strict';
-console.log("robs HangMan")
+
 // brings in the assert module for unit testing
 const assert = require('assert');
 // brings in the readline module to access the command line
@@ -13,13 +13,54 @@ const rl = readline.createInterface({
 
 
 
+// This is what the hidden word will be 
+const Selectedword = ['coding'];
+
+const correctLetters = [];
+const wrongLetters = [];
+
+
+window.addEventListener('keydown', e => {
+    if (e.keyCode >= 65 && e.keyCode <= 90) {
+        const letter = e.key;
+
+        if (selectedWord.includes(letter)){
+            if(!correctLetters.includes(letter)){
+                
+                correctLetters.push(letter);
+
+               
+
+            } else {
+               
+            }
+        } else {
+            if (!wrongLetters.includes(letter)){
+               
+                wrongLetters.push(letter);
+
+                
+            } else {
+                return 
+            }
+        }
+    }
+});
 
 
 
 
 
-const hangMan = (word) => {
 
+
+
+const checkForWin = (word) => {
+
+  if (correctLetters.includes(word) === true ){
+    console.log('hooray you won')
+} else if (wrongLetters > 7) {
+    console.log('sorry you lose!')
+}
   return 'This is what the function returns'
 };
 
@@ -30,7 +71,7 @@ const hangMan = (word) => {
 // to close it ctrl + C
 const getPrompt = () => {
   rl.question('word ', (answer) => {
-    console.log( hangMan(answer) );
+    console.log( checkForWin(answer) );
     getPrompt();
   });
 }
