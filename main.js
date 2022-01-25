@@ -12,65 +12,54 @@ const rl = readline.createInterface({
 
 
 
-
 // This is what the hidden word will be 
 const Selectedword = ['coding'];
 
-const correctLetters = [];
-const wrongLetters = [];
+// If correctGuesses array matched the correctGuesses you have won
+
+// If the wrongLetters array has more than 7 wrong letters, YOU LOSE
+const correctLetters = ['c', 'o', 'd', 'i', 'n', 'g'];
+const correctGuesses = [];
+const wrongGuesses = [];
 
 
-window.addEventListener('keydown', e => {
-    if (e.keyCode >= 65 && e.keyCode <= 90) {
-        const letter = e.key;
+const hangman = (letter) => {
+// If the correct letters include the selectedWord
+  if (correctLetters.includes(letter) === true ){
+    
+    correctGuesses.push(letter)
 
-        if (selectedWord.includes(letter)){
-            if(!correctLetters.includes(letter)){
-                
-                correctLetters.push(letter);
+    return `${letter} is a correct guess!`
+   
+} else if (correctLetters.includes(letter) === false) {
+   
+    wrongGuesses.push(letter)
 
-               
-
-            } else {
-               
-            }
-        } else {
-            if (!wrongLetters.includes(letter)){
-               
-                wrongLetters.push(letter);
-
-                
-            } else {
-                return 
-            }
-        }
-    }
-});
-
-
-
-
-
-
-
-
-const checkForWin = (word) => {
-
-  if (correctLetters.includes(word) === true ){
-    console.log('hooray you won')
-} else if (wrongLetters > 7) {
-    console.log('sorry you lose!')
+    return `${letter} does not exist in the word you are trying to guess`
 }
-  return 'This is what the function returns'
+ 
 };
 
+
+const checkForWinOrLose = () => {
+  for (let i = 0; i < correctLetters.length; i++) {
+    if( correctLetters[i] === correctGuesses[i]){
+     
+      return `Youve won the game! `
+
+    } else if (wrongGuesses > 7) {
+
+      return `Sorry You Lose!`
+    }
+  }
+}
 
 
 // the first function called in the program to get an input from the user
 // to run the function use the command: node main.js
 // to close it ctrl + C
 const getPrompt = () => {
-  rl.question('word ', (answer) => {
+  rl.question('selectedWord ', (answer) => {
     console.log( checkForWin(answer) );
     getPrompt();
   });
