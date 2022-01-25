@@ -1,5 +1,5 @@
 'use strict';
-
+console.log("hartsHangMan")
 // brings in the assert module for unit testing
 const assert = require('assert');
 // brings in the readline module to access the command line
