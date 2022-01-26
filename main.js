@@ -1,5 +1,5 @@
 'use strict';
-console.log("robs HangMan")
+
 // brings in the assert module for unit testing
 const assert = require('assert');
 // brings in the readline module to access the command line
@@ -12,55 +12,105 @@ const rl = readline.createInterface({
 
 
 
+// This is what the hidden word will be 
+const Selectedword = ['coding'];
+
+// If correctGuesses array matched the correctGuesses you have won
+
+// If the wrongLetters array has more than 7 wrong letters, YOU LOSE
+const correctLetters = ['c', 'o', 'd', 'i', 'n', 'g'];
+const correctGuesses = [];
+const wrongGuesses = [];
 
 
+const hangman = (letter) => {
+// If the correct letters include the selectedWord
+  if (correctLetters.includes(letter) === true ){
+    
+    correctGuesses.push(letter)
 
+    return `${letter} is a correct guess!`
+   
+} else if (correctLetters.includes(letter) === false) {
+   
+    wrongGuesses.push(letter)
 
-
-
-const hangMan = (word) => {
-
-  return 'This is what the function returns'
+    return `${letter} does not exist in the word you are trying to guess`
+}
+ 
 };
 
+
+const checkForWinOrLose = () => {
+  for (let i = 0; i < correctLetters.length; i++) {
+    if( correctLetters[i] === correctGuesses[i]){
+     
+      return `Youve won the game! `
+
+    } else if (wrongGuesses > 7) {
+
+      return `Sorry You Lose!`
+    } else {
+      return 
+    }
+  }
+}
 
 
 // the first function called in the program to get an input from the user
 // to run the function use the command: node main.js
 // to close it ctrl + C
 const getPrompt = () => {
-  rl.question('word ', (answer) => {
-    console.log( hangMan(answer) );
+  rl.question('Enter a letter a-z- ', (letter) => {
+    console.log( hangman(letter) );
     getPrompt();
   });
 }
+
+
 
 // Unit Tests
 // to use them run the command: npm test main.js
 // to close them ctrl + C
 if (typeof describe === 'function') {
 
-  // describe('#pigLatin()', () => {
-  //   it('should translate a simple word', () => {
-  //     assert.equal(pigLatin('car'), 'arcay');
-  //     assert.equal(pigLatin('dog'), 'ogday');
-  //   });
-  //   it('should translate a complex word', () => {
-  //     assert.equal(pigLatin('create'), 'eatecray');
-  //     assert.equal(pigLatin('valley'), 'alleyvay');
-  //   });
-  //   it('should attach "yay" if word begins with vowel', () => {
-  //     assert.equal(pigLatin('egg'), 'eggyay');
-  //     assert.equal(pigLatin('emission'), 'emissionyay');
-  //   });
-  //   it('should lowercase and trim word before translation', () => {
-  //     assert.equal(pigLatin('HeLlO '), 'ellohay');
-  //     assert.equal(pigLatin(' RoCkEt'), 'ocketray');
-  //   });
-  // });
+  describe('#checkForWinOrLose()', () => {
+    it('checks if you the first letter is correct', () => {
+      
+      
+      assert.equal(correctGuesses[0], 'c');
+      
+    });
+    it('checks if the second letter is correct', () => {
+      
+      assert.equal(correctGuesses[1], 'o');
+
+    });
+    it('checks if third letter is correct', () => {
+      
+      assert.equal(correctGuesses[2], 'd');
+
+    });
+    it('checks if fourth letter is correct', () => {
+     
+      assert.equal(correctGuesses[3], 'i');
+
+    });
+    it('checks if fifth letter is correct', () => {
+     
+      assert.equal(correctGuesses[4], 'n');
+
+    });
+    it('checks if sixth letter is correct', () => {
+     
+      assert.equal(correctGuesses[5], 'g');
+
+    });
+  });
 } else {
 
   getPrompt();
+  checkForWinOrLose();
 
 }
 
