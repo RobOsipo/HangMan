@@ -20,19 +20,23 @@ const Selectedword = ['coding'];
 
 // If the wrongLetters array has more than 7 wrong letters, YOU LOSE
 const correctLetters = ['c', 'o', 'd', 'i', 'n', 'g'];
-const correctGuesses = [];
-const wrongGuesses = [];
+let correctGuesses = [];
+let wrongGuesses = [];
 
 
 const hangman = (letter) => {
-// If the correct letters include the selectedWord
+// If the correct letters include the letter selected 
   if (correctLetters.includes(letter) === true ){
     
     correctGuesses.push(letter)
+    // Push the letter into the correctGuesses array
     console.log(correctGuesses)
     checkForWinOrLose()
     console.log(`${letter} is a correct guess!`)
     if (correctGuesses.length === 6){
+      
+      let correctGuesses = [];
+      resetGame()
       return 'youve won the game'
     }
 
@@ -40,7 +44,8 @@ const hangman = (letter) => {
 } else if (correctLetters.includes(letter) === false) {
    
     wrongGuesses.push(letter)
-  checkForWinOrLose()
+    console.log("Wrong guesses", wrongGuesses)
+    checkForWinOrLose()
     return `${letter} does not exist in the word you are trying to guess`
 }
  
@@ -51,20 +56,43 @@ const checkForWinOrLose = () => {
   for (let i = 0; i < correctLetters.length; i++) {
     if( correctLetters[i] === correctGuesses[i]){
        
-      correctGuesses = [];
-      getPrompt()
+     
+      
       return `Youve won the game! `
 
-    } else if (wrongGuesses.length > 7) {
-      getPrompt()
+    } else if (wrongGuesses.length === 7) {
+      console.log('spot 1 log')
       return `Sorry You Lose!`
     } else {
+      
       return 
     }
   }
 }
 
 
+
+
+
+const resetGame = () => {
+  rl.question('Would you like to play again? y or n ', (yOrn) => {
+    if (yOrn === 'y') {
+
+      
+      let correctGuesses = [];
+      let wrongGuesses = [];
+
+      console.log( 'Starting a new game...' );
+
+      return getPrompt()
+
+    } else if (yOrn === 'n') {
+        console.log('Thanks for Playing!')
+      return 
+
+    }
+  } )
+};
 // the first function called in the program to get an input from the user
 // to run the function use the command: node main.js
 // to close it ctrl + C
