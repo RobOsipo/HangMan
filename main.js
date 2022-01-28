@@ -2,6 +2,7 @@
 
 // brings in the assert module for unit testing
 const assert = require('assert');
+const { mainModule } = require('process');
 // brings in the readline module to access the command line
 const readline = require('readline');
 // use the readline module to print out to the command line
@@ -29,11 +30,25 @@ const hangman = (letter) => {
     
     correctGuesses.push(letter)
 
+
     return `${letter} is a correct guess!`
+
+    console.log(correctGuesses)
+    checkForWinOrLose()
+    console.log(`${letter} is a correct guess!`)
+    if (correctGuesses.length === 6){
+      return 'youve won the game'
+    }
+
+
    
 } else if (correctLetters.includes(letter) === false) {
    
     wrongGuesses.push(letter)
+
+
+
+  checkForWinOrLose()
 
     return `${letter} does not exist in the word you are trying to guess`
 }
@@ -44,10 +59,14 @@ const hangman = (letter) => {
 const checkForWinOrLose = () => {
   for (let i = 0; i < correctLetters.length; i++) {
     if( correctLetters[i] === correctGuesses[i]){
+
      
+      correctGuesses = [];
+      getPrompt()
       return `Youve won the game! `
 
-    } else if (wrongGuesses > 7) {
+    } else if (wrongGuesses.length > 7) {
+      getPrompt()
 
       return `Sorry You Lose!`
     } else {
@@ -63,7 +82,14 @@ const checkForWinOrLose = () => {
 const getPrompt = () => {
   rl.question('Enter a letter a-z- ', (letter) => {
     console.log( hangman(letter) );
-    getPrompt();
+
+  
+
+   getPrompt();
+      if (correctGuesses.length === 6) {
+        return 
+      }
+
   });
 }
 
@@ -75,6 +101,8 @@ const getPrompt = () => {
 if (typeof describe === 'function') {
 
   describe('#checkForWinOrLose()', () => {
+
+
     it('checks if you the first letter is correct', () => {
       
       
