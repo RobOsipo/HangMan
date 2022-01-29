@@ -3,7 +3,7 @@
 }
 
 body {
-    background-color: green;
+    background-image: url('./img/blue_portal.gif');
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
