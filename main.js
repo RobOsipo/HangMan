@@ -46,15 +46,6 @@ const hangman = (letter) => {
    
     wrongGuesses.push(letter)
 
-    checkForWinOrLose()
-
-
-
-
-  checkForWinOrLose()
-
-
-    return `${letter} does not exist in the word you are trying to guess`
 }
  
 };
@@ -63,15 +54,6 @@ const hangman = (letter) => {
 const checkForWinOrLose = () => {
   for (let i = 0; i < correctLetters.length; i++) {
     if( correctLetters[i] === correctGuesses[i]){
-
-
-     
-      correctGuesses = [];
-      getPrompt()
-      return `Youve won the game! `
-
-    } else if (wrongGuesses.length > 7) {
-      getPrompt()
 
       return `Sorry You Lose!`
     } else {
