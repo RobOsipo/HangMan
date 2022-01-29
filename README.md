@@ -4,4 +4,4 @@
 
 # # the front end gui is play ready! The words are coding, developer, knight, or wizard
 
-# Thankyou!!
+# Test are with  the backend logic in the main.js file
