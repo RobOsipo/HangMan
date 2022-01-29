@@ -29,7 +29,7 @@ const hangman = (letter) => {
   if (correctLetters.includes(letter) === true ){
     
     correctGuesses.push(letter)
-    // Push the letter into the correctGuesses array
+
     console.log(correctGuesses)
     checkForWinOrLose()
     console.log(`${letter} is a correct guess!`)
@@ -40,13 +40,12 @@ const hangman = (letter) => {
       return 'youve won the game'
     }
 
+
    
 } else if (correctLetters.includes(letter) === false) {
    
     wrongGuesses.push(letter)
-    console.log("Wrong guesses", wrongGuesses)
-    checkForWinOrLose()
-    return `${letter} does not exist in the word you are trying to guess`
+
 }
  
 };
@@ -55,13 +54,7 @@ const hangman = (letter) => {
 const checkForWinOrLose = () => {
   for (let i = 0; i < correctLetters.length; i++) {
     if( correctLetters[i] === correctGuesses[i]){
-       
-     
-      
-      return `Youve won the game! `
 
-    } else if (wrongGuesses.length === 7) {
-      console.log('spot 1 log')
       return `Sorry You Lose!`
     } else {
       
@@ -99,10 +92,14 @@ const resetGame = () => {
 const getPrompt = () => {
   rl.question('Enter a letter a-z- ', (letter) => {
     console.log( hangman(letter) );
+
+  
+
    getPrompt();
       if (correctGuesses.length === 6) {
         return 
       }
+
   });
 }
 
@@ -114,13 +111,6 @@ const getPrompt = () => {
 if (typeof describe === 'function') {
 
   describe('#checkForWinOrLose()', () => {
-    // it('checks if you have selected over 7 incorrect guesses', () => {
-
-    //   assert.equal()
-
-    // });
-
-
 
 
     it('checks if you the first letter is correct', () => {
