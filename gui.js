@@ -45,7 +45,7 @@ if (innerWord === selectedWord) {
 function updateWrongLetterE1() {
     //// Display wrong letters in the wrong Letters DIV
     wrongLettersE1.innerHTML = `
-    ${wrongLetters.length > 0 ? '<p>Wrong Guesses mock you silently here</p>' : ''}
+    ${wrongLetters.length > 0 ? '<p>Wrong Guesses Here</p>' : ''}
     ${wrongLetters.map(letter => `<span>${letter}</span>`)}
     `;
 

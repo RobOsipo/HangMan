@@ -3,7 +3,9 @@
 }
 
 body {
-    background-image: url('./img/blue_portal.gif');
+    /* background-image: url('./img/blue_portal.gif'); */
+    background-color: rgb(105, 99, 99);
+
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
